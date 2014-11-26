@@ -20,6 +20,7 @@ abstract public class AbstractShape {
     abstract public void draw(Pen p);
 
     abstract public void stretchBy(double factor);
+    abstract public double perim();
 
     public final double getxpos() {
         return xPos;
@@ -29,7 +30,7 @@ abstract public class AbstractShape {
         return yPos;
     }
 
-    public final void move(double xLoc, double yLoc) {
+    public void move(double xLoc, double yLoc) {
         xPos = xLoc;
         yPos = yLoc;
     }

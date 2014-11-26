@@ -16,6 +16,11 @@ AbstractShape s;
         p = new StandardPen(w);
         s = new Circle(0,0,0);
     }
+    private void erase(){
+        p.setColor(Color.white);
+        s.draw(p);
+        p.setColor(Color.blue);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,12 +54,32 @@ AbstractShape s;
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnCircle.setText("Circle");
+        btnCircle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCircleActionPerformed(evt);
+            }
+        });
 
         btnWheel.setText("Wheel");
+        btnWheel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWheelActionPerformed(evt);
+            }
+        });
 
         btnRectangle.setText("Rectangle");
+        btnRectangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRectangleActionPerformed(evt);
+            }
+        });
 
         btnTriangle.setText("Triangle");
+        btnTriangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTriangleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,8 +114,18 @@ AbstractShape s;
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnMove.setText("Move");
+        btnMove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoveActionPerformed(evt);
+            }
+        });
 
         btnResize.setText("Resize");
+        btnResize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResizeActionPerformed(evt);
+            }
+        });
 
         btnQuit.setText("Quit");
 
@@ -170,6 +205,52 @@ AbstractShape s;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCircleActionPerformed
+        erase();
+        s=new Circle(0,0,50);
+        s.draw(p);
+        txtData.setText(s.toString());
+    }//GEN-LAST:event_btnCircleActionPerformed
+
+    private void btnWheelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWheelActionPerformed
+        erase();
+        s=new Wheel(0,0,50,6);
+        s.draw(p);
+        txtData.setText(s.toString());
+    }//GEN-LAST:event_btnWheelActionPerformed
+
+    private void btnRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectangleActionPerformed
+        erase();
+        s=new Rect(0,0,50,60);
+        s.draw(p);
+        txtData.setText(s.toString());
+    }//GEN-LAST:event_btnRectangleActionPerformed
+
+    private void btnTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriangleActionPerformed
+        erase();
+        s=new Triangle();
+        s.draw(p);
+        txtData.setText(s.toString());
+    }//GEN-LAST:event_btnTriangleActionPerformed
+
+    private void btnMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveActionPerformed
+        double x = Double.parseDouble(JOptionPane.showInputDialog(this,"Enter new x: "));
+        double y = Double.parseDouble(JOptionPane.showInputDialog(this,"Enter new y: "));
+        erase();
+        s.move(x, y);
+        s.draw(p);
+        txtData.setText(s.toString());
+    }//GEN-LAST:event_btnMoveActionPerformed
+
+    private void btnResizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResizeActionPerformed
+        
+        double x = Double.parseDouble(JOptionPane.showInputDialog(this,"Enter stretch factor: "));
+        erase();
+        s.stretchBy(x);
+        s.draw(p);
+        txtData.setText(s.toString());
+    }//GEN-LAST:event_btnResizeActionPerformed
 
     /**
      * @param args the command line arguments

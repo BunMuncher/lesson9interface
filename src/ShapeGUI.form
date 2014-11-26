@@ -129,21 +129,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Circle"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCircleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnWheel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Wheel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWheelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRectangle">
           <Properties>
             <Property name="text" type="java.lang.String" value="Rectangle"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRectangleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnTriangle">
           <Properties>
             <Property name="text" type="java.lang.String" value="Triangle"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTriangleActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -197,11 +209,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Move"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoveActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnResize">
           <Properties>
             <Property name="text" type="java.lang.String" value="Resize"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResizeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnQuit">
           <Properties>

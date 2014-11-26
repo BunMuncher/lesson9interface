@@ -37,10 +37,15 @@ public class Circle extends AbstractShape {
     }
 
     public String toString() {
-        String str = "This is a CIRCLE\n";
-        str += "Radius: " + rad;
+        String str = "This is a Circle\n";
+        str += "Radius: " + rad + "\tPerimeter: " + perim();
         str += "\n" + super.toString();
         return str;
+    }
+
+    
+    public double perim() {
+        return Math.PI * 2 * rad;
     }
 
 }
