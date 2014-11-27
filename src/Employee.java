@@ -14,15 +14,15 @@ public abstract class Employee {
     }
 
     public static String getNameRules() {
-        return "nonblank";
+        return "must be nonblank";
     }
 
     public static String getRateRules() {
-        return "between 6.75 and 30.50, inclusive";
+        return "must be between 6.75 and 30.50, inclusive";
     }
 
     public static String getHoursRules() {
-        return "between 1 and 60, inclusive";
+        return "must be between 1 and 60, inclusive";
     }
     public static double getTotalPay(){
         return totalPay;

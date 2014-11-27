@@ -48,7 +48,6 @@ public class EmployeeGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         lblTotalPay = new javax.swing.JLabel();
         lblTotalPay1 = new javax.swing.JLabel();
-        txtTotalPay = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +99,11 @@ public class EmployeeGUI extends javax.swing.JFrame {
         });
 
         btnQuit.setText("Quit");
+        btnQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitActionPerformed(evt);
+            }
+        });
 
         tblTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,9 +135,6 @@ public class EmployeeGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Total Pay:");
 
-        txtTotalPay.setEditable(false);
-        txtTotalPay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,9 +158,7 @@ public class EmployeeGUI extends javax.swing.JFrame {
                         .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotalPay, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,9 +202,8 @@ public class EmployeeGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(lblTotalPay)
-                    .addComponent(txtTotalPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTotalPay))
+                .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(534, Short.MAX_VALUE)
@@ -230,10 +228,30 @@ public class EmployeeGUI extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this,"Must fill form out correctly.");
            return;
        }
-       if(Type.equals("FT")){ 
+       if(type.equals("FT")){ 
            temp = new FullTimeEmp();
        }
+       else
+           temp = new PartTimeEmp();  
+       //setting temp to emp
+       if(temp.setName(nm) && temp.setHours(hours) && temp.setRate(rate)){
+           emp[size] = temp;
+           tblTable.setValueAt(temp.getName(),size,0);
+           tblTable.setValueAt(nf.format(temp.getPay()),size,1);
+           size++;
+           lblTotalPay.setText(nf.format(Employee.getTotalPay()));
+           clearform();
+           return;
+       }
+       String error = "ERROR:";
+       if(temp.setName(nm)==false) error +="\nName: " + Employee.getNameRules();
+       if(temp.setHours(hours)==false) error +="\nHours: " + Employee.getHoursRules();
+       if(temp.setRate(rate)==false) error +="\nRate: " + Employee.getRateRules();
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnQuitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +315,11 @@ public class EmployeeGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtHours;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtRate;
-    private javax.swing.JTextField txtTotalPay;
     // End of variables declaration//GEN-END:variables
+
+    private void clearform() {
+       txtHours.setText("");
+       txtName.setText("");
+       txtRate.setText("");
+    }
 }
